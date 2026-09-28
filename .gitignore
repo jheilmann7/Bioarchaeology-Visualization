@@ -7,3 +7,6 @@
 **/*.quarto_ipynb
 
 _book/
+.httr-oauth
+.DS_Store
+.quarto

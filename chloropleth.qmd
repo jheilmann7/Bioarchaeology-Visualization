@@ -1,2 +1,0 @@
-# Choropleth Maps
-
