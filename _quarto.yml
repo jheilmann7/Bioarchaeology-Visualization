@@ -1,0 +1,56 @@
+project:
+  type: book
+
+book:
+  title: "Bioarchaeology Visualization"
+  author: "Jen Heilmann"
+  date: "9/26/2026"
+  chapters:
+    - index.qmd
+    - part: r_basics.qmd
+      chapters: 
+        - summary_statistics.qmd
+        - dataframes.qmd
+        - custom_functions.qmd
+    - part: analysis.qmd
+      chapters: 
+        - hypothesis.qmd
+        - ANOVA.qmd
+        - Regression.qmd
+    - part: intro_visual.qmd
+      chapters:
+        - Types.qmd
+        - Packages.qmd
+        - Customization.qmd
+    - part: sisotopes.qmd
+      chapters:
+        - isodata.qmd
+        - trace.qmd
+        - heavy.qmd
+        - light.qmd
+    - part: geomorph.qmd
+      chapters:
+        - GPA.qmd
+        - PCA.qmd
+    - part: mapping.qmd
+      chapters:
+        - map.qmd
+        - choropleth.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    link-external-newwindow: true
+    theme:
+      - cosmo
+      - brand
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+
+execute:
+  freeze: auto

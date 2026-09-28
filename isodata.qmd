@@ -1,0 +1,44 @@
+# Resources {.unnumbered}
+## Isotope Databases {.unnumbered}
+
+[MAIA](https://pandoradata.earth/my_MM/dataset/maia): Mediterranean Archive of Isotopic Data
+
+[Isotòpia](https://pandora.earth/mn_MN/dataset/isotopia-a-stable-isotope-database-for-classical-antiquity): A stable isotope database for Classical Antiquity
+
+[ISOMED](https://www.seanoe.org/data/00895/100661/): A stable isotope database of Mediterranean marine food web components
+
+[IsoArcH](https://explorer.isoarch.org/): A stable isotope database for research worldwide
+
+## R Packages for Stable Isotopes {.unnumbered}
+
+### Diet Mixing Models {.unnumbered}
+
+#### simmr: A Stable Isotope Mixing Model {.unnumbered}
+
+[R Project Page](https://CRAN.R-project.org/package=simmr) \| [GitHub Page](https://github.com/andrewcparnell/simmr)
+
+#### cosimmr: Fast Fitting of Stable Isotope Mixing Models with Covariates {.unnumbered}
+
+[R Project Page](https://CRAN.R-project.org/package=cosimmr) \| [GitHub Page](https://github.com/emmagovan/cosimmr)
+
+#### MixSIAR: Bayesian Mixing Models in R {.unnumbered}
+
+[R Project Page](https://CRAN.R-project.org/package=MixSIAR) \| [GitHub Page](https://github.com/brianstock/MixSIAR)
+
+#### ReSources: Food Reconstruction Using Isotopic Transferred Signals {.unnumbered}
+
+[IsoMemo Page](https://pandora-isomemo.github.io/docs/apps.html) \| [GitHub Page](https://github.com/Pandora-IsoMemo/ReSources)
+
+### Isoscapes {.unnumbered}
+
+#### assignR: Infer Geographic Origin from Isotopic Data {.unnumbered}
+
+[R Project Page](https://CRAN.R-project.org/package=assignR)
+
+#### IsoriX: Isoscape Computation and Inference of Spatial Origins using Mixed Models {.unnumbered}
+
+[R Project Page](https://CRAN.R-project.org/package=IsoriX) \| [GitHub Page](https://github.com/courtiol/IsoriX)
+
+#### isocat: Isotope Origin Clustering and Assignment Tools {.unnumbered}
+
+[R Project Page](https://CRAN.R-project.org/package=isocat) \| [GitHub Page](https://github.com/cjcampbell/isocat)

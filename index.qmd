@@ -1,0 +1,18 @@
+# Overview {.unnumbered}
+## Purpose {.unnumbered}
+
+The goal of this book is to bring together the various visualization tools that may not have been designed for bioarchaeology, but proliferate the discipline.
+
+## Sections {.unnumbered}
+
+The book is divided into two main parts:
+
+1.  Introduction to R Visualizations
+2.  Discipline specific Visualizations
+
+## Goals {.unnumbered}
+
+1.  Learning goal 1
+2.  learning goal 2
+3.  learning goal 3
+4.  learning goal 4
