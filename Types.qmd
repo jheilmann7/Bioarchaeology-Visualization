@@ -1,14 +1,15 @@
-# Types of Visualizations
+# Types of Visualizations {.unnumbered}
 
-## Distribution
+## Distribution {.unnumbered}
 
 ```{r}
+#| include: false
 library(ggplot2)
 data <- data.frame(value=rnorm(100, mean=15, sd=3))
 data$group <- as.factor(sample(1:3, size=100, replace=TRUE))
 ```
 
-### Boxplot
+### Boxplot {.unnumbered}
 
 ```{r}
 #| label: basic-boxplot
@@ -26,7 +27,7 @@ ggplot(data, aes(y=value, x=group))+
   geom_boxplot()
 ```
 
-### Violin
+### Violin {.unnumbered}
 
 ```{r}
 #| label: violin
@@ -35,7 +36,7 @@ ggplot(data, aes(x=group, y=value))+
   geom_violin()
 ```
 
-### Histogram
+### Histogram {.unnumbered}
 
 ```{r}
 #| label: basic-histogram
@@ -54,7 +55,7 @@ ggplot(data, aes(x=value))+
   geom_histogram(binwidth=.1)
 ```
 
-### Density
+### Density {.unnumbered}
 
 ```{r}
 #| label: density
@@ -63,30 +64,30 @@ ggplot(data, aes(x=value))+
   geom_density()
 ```
 
-## Correlation
+## Correlation {.unnumbered}
 
-### Scatter
+### Scatter {.unnumbered}
 
-### Bubble
+### Bubble {.unnumbered}
 
-### Heatmap
+### Heatmap {.unnumbered}
 
-### Correlogram
+### Correlogram {.unnumbered}
 
-## Map
+## Map {.unnumbered}
 
-### Map
+### Map {.unnumbered}
 
-### Choropleth
+### Choropleth {.unnumbered}
 
-### Bubble Map
+### Bubble Map {.unnumbered}
 
-## Flow
+## Flow {.unnumbered}
 
-### Chord Diagram
+### Chord Diagram {.unnumbered}
 
-### Network
+### Network {.unnumbered}
 
-### Sankey
+### Sankey {.unnumbered}
 
-### Dendrogram
+### Dendrogram {.unnumbered}
