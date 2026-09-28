@@ -5,6 +5,7 @@
 
 ```{r}
 #| echo: false
+#| message: false
 
 library(gt)
 library(dplyr)
