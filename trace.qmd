@@ -47,7 +47,6 @@ enamel <- cbind(sample = sprintf("ME%02d", 1:10), enamel)
 ### Maximum Threshold Concentration (MTC)
 Source: Kamenov et al., 2018
 ```{r}
-#| echo: false
 #| message: false
 
 library(gt)
@@ -71,10 +70,16 @@ trace <- data.frame(Elements, MTC)
 ```
 2. Normalize each column by dividing by the MTC
 ```{r}
+<<<<<<< HEAD
 mtc <- trace$MTC[match(names(enamel)[-1], trace$Elements)] # ensures the elements are in the same order
+=======
+mtc <- trace$MTC[match(names(enamel)[-1], trace$Elements)] 
+# ensures the elements are in the same order
+>>>>>>> 6ecd66b (hhhhhh)
 # if you have additional variables, exclude those as well in place of [-1] which removes the first column of sample names
 
-mtc.ratio <- cbind(sample=enamel$sample, sweep(enamel[,-1], 2, mtc, "/")) # divides the sample values by the matched MTC values
+mtc.ratio <- cbind(sample=enamel$sample, sweep(enamel[,-1], 2, mtc, "/")) 
+# divides the sample values by the matched MTC values
 # sweep(x, Margin, Stats, Fun)
 ```
 3. Create a subset of Ratios
@@ -84,8 +89,10 @@ library(tidyr)
 elements <- c("V", "Mn", "Fe", "La", "Ce", "Nd", "Dy", "Yb", "Th", "U")
 
 mtc.long <- mtc.ratio %>%
-  select(sample, all_of(elements)) %>% # pulls the sample numbers and the values for the subset of elements
-  pivot_longer(-sample, names_to = "element", values_to = "ratio") # transforms the table into a stacked format
+  select(sample, all_of(elements)) %>% 
+  # pulls the sample numbers and the values for the subset of elements
+  pivot_longer(-sample, names_to = "element", values_to = "ratio") 
+  # transforms the table into a stacked format
 ```
 4. Plotting the Normalized Concentrations
 ```{r}

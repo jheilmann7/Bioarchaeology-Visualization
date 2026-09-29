@@ -1,18 +1,19 @@
 # Overview {.unnumbered}
+
 ## Purpose {.unnumbered}
 
-The goal of this book is to bring together the various visualization tools that may not have been designed for bioarchaeology, but proliferate the discipline.
+This book is an open-access resource for students and professionals who want to create clear, accurate, and publication-ready visualizations of bioarchaeological data using R and ggplot2
 
 ## Sections {.unnumbered}
 
 The book is divided into two main parts:
 
 1.  Introduction to R Visualizations
-2.  Discipline specific Visualizations
+2.  Discipline-Specific Visualizations
 
 ## Goals {.unnumbered}
 
-1.  Learning goal 1
-2.  learning goal 2
-3.  learning goal 3
-4.  learning goal 4
+1.  **Locate and access** open databases and R packages relevant to isotopic analysis, geometric morphometrics, and spatial data in bioarchaeology.
+2.  **Select** appropriate visualization types based on the data structure and the research question being asked.
+3.  **Interpret** each type of visualization, recognizing what the plot shows, what it does not show, and common pitfalls in reading it.
+4.  **Adapt** the annotated code examples to their own datasets and research projects.
