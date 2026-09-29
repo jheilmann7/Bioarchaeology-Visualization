@@ -45,12 +45,14 @@ enamel <- cbind(sample = sprintf("ME%02d", 1:10), enamel)
 ```
 ## Checking for Diagenesis
 ### Maximum Threshold Concentration (MTC)
+Source: Kamenov et al., 2018
 ```{r}
 #| echo: false
 #| message: false
 
 library(gt)
 library(dplyr)
+
 Elements <- c("Mg", "Ca", "V", "Cr", "Mn", "Fe", "Ni", "Cu", "Zn", "Sr",
               "Ba", "La", "Ce", "Pr", "Nd", "Sm", "Eu","Gd" , "Tb", "Dy",
               "Ho", "Er", "Tm", "Yb", "Lu", "Pb", "Th", "U")
@@ -60,18 +62,13 @@ MTC <- c(6472, 462387, 0.11, 13.9, 15.4, 143, 46, 48, 629, 1700,
          0.002, 0.008, 0.001, 0.021, 0.003, 63, 0.05, 0.05)
 
 trace <- data.frame(Elements, MTC)
-
-trace %>%
-  gt() %>%
-  tab_footnote(footnote=md("Source: Kamenov et al., 2018"))
 ```
 
 ### Normalizing your data (divide by the MTC)
 1. Transform data into a wide format(rows = samples | columns = elements)
 2. Normalize each column by dividing by the MTC
 ```{r}
-
-mtc <- trace$MTC[match(enamel)[-1], trace$Elements] # ensures the elements are in the same order
+mtc <- trace$MTC[match(names(enamel)[-1], trace$Elements)] # ensures the elements are in the same order
 # if you have additional variables, exclude those as well in place of [-1] which removes the first column of sample names
 
 mtc.ratio <- cbind(sample=enamel$sample, sweep(enamel[,-1], 2, mtc, "/")) # divides the sample values by the matched MTC values
@@ -79,7 +76,7 @@ mtc.ratio <- cbind(sample=enamel$sample, sweep(enamel[,-1], 2, mtc, "/")) # divi
 ```
 3. Create a subset of Ratios
 ```{r}
-library(tidyverse)
+library(tidyr)
 
 elements <- c("V", "Mn", "Fe", "La", "Ce", "Nd", "Dy", "Yb", "Th", "U")
 
