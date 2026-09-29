@@ -65,7 +65,10 @@ trace <- data.frame(Elements, MTC)
 ```
 
 ### Normalizing your data (divide by the MTC)
-1. Transform data into a wide format(rows = samples | columns = elements)
+1. Transform data into a wide format
+```{r}
+# Depending on the format of your data, transform the dataframe so that the rows represent the samples/individuals and the columns represent the trace elements.
+```
 2. Normalize each column by dividing by the MTC
 ```{r}
 mtc <- trace$MTC[match(names(enamel)[-1], trace$Elements)] # ensures the elements are in the same order
@@ -95,14 +98,25 @@ ggplot(mtc.long, aes(x=sample, y=ratio, group=element))+
   geom_hline(yintercept = 10^0, color="red")+
   labs(x="Samples", y="C/MTC")
 ```
-
 5. Interpret the Data
-Dividing the sample concentrations by the maximum threshold concentrations obtained from modern individuals acts as a diagenesis check. If any value exceeds the 10^0 line, there is potential diagenic alteration to the sample. 
-
+```{r}
+# Dividing the sample concentrations by the maximum threshold concentrations obtained from modern individuals acts as a diagenesis check. If any value exceeds the 10^0 line, there is potential diagenic alteration to the sample.
+```
 
 
 ## Dietary analysis
+Ba/Ca vs. Sr/Ca
+```{r}
+# Trophic Level and Salinity
+```
 
-divide certain elements by Ca
+d13C vs. Ba/Sr
+```{r}
+# 
+```
 
-"Sr", "Ba"
+Zn/Ca
+```{r}
+# Proportion of shellfish in diet
+```
+
