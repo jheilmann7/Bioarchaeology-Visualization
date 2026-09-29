@@ -1,9 +1,7 @@
 # Trace Element Analysis
 
 ## Checking for Diagenesis
-
-1.  Maximum Threshold Concentration (MTC)
-
+1. Maximum Threshold Concentration (MTC)
 ```{r}
 #| echo: false
 #| message: false
@@ -26,7 +24,6 @@ trace %>%
 ```
 
 2.  Normalizing your data (divide by the MTC)
-
 ```{r}
 #| include: false
 
@@ -90,6 +87,13 @@ ggplot(enamel, aes(x=sample, y=))+
     labels = trans_format("log10", math_format(10^.x))) +
   geom_hline(yintercept = 10^0, color="red")
 ```
+
+
+
+2. logarithmic scale for y-axis (so all elements can be viewed at the same time)
+
+"V", "Mn", "Fe", "La", "Ce", "Nd", "Dy", "Yb", "Th", "U"
+
 
 
 ## Dietary analysis
