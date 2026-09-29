@@ -1,7 +1,8 @@
 # Trace Element Analysis
 
 ## Checking for Diagenesis
-### Maximum Threshold Concentration (MTC)
+
+1.  Maximum Threshold Concentration (MTC)
 
 ```{r}
 #| echo: false
@@ -10,11 +11,11 @@
 library(gt)
 library(dplyr)
 Elements <- c("Mg", "Ca", "V", "Cr", "Mn", "Fe", "Ni", "Cu", "Zn", "Sr",
-              "Ba", "La", "Ce", "Pr", "Nd", "Sm", "Eu", "Gd", "Tb", "Dy",
+              "Ba", "La", "Ce", "Pr", "Nd", "Sm", "Tb", "Dy",
               "Ho", "Er", "Tm", "Yb", "Lu", "Pb", "Th", "U")
 
 MTC <- c(6472, 462387, 0.11, 13.9, 15.4, 143, 46, 48, 629, 1700,
-         40, 0.1, 0.12, 0.015, 0.058, 0.030, NA, NA, 0.002, 0.009,
+         40, 0.1, 0.12, 0.015, 0.058, 0.030, 0.002, 0.009,
          0.002, 0.008, 0.001, 0.021, 0.003, 63, 0.05, 0.05)
 
 trace <- data.frame(Elements, MTC)
@@ -24,12 +25,75 @@ trace %>%
   tab_footnote(footnote=md("Source: Kamenov et al., 2018"))
 ```
 
-### Normalizing your data
-divide your data by the MTC for the desired elements
+2.  Normalizing your data (divide by the MTC)
+
+```{r}
+#| include: false
+
+set.seed(79)
+
+ref <- data.frame(
+  element = c("Mg","Ca","V","Cr","Mn","Fe","Ni","Cu","Zn","Sr","Ba",
+              "La","Ce","Pr","Nd","Sm","Eu","Gd","Tb","Dy","Ho","Er",
+              "Tm","Yb","Lu","Pb","Th","U"),
+  mean = c(3075, 391417, 0.028, 0.8, 1.95, 15, 2.2, 3.6, 215, 168, 4.6,
+           0.007, 0.010, 0.0014, 0.006, 0.004, NA, NA, 0.0005, 0.0015,
+           0.0005, 0.0014, 0.0003, 0.0026, 0.0005, 6.55, 0.0031, 0.003),
+  sd   = c(623, 18230, 0.014, 1.83, 1.72, 19, 4.9, 7.4, 77, 178, 4.4,
+           0.012, 0.015, 0.002, 0.008, 0.005, NA, NA, 0.0003, 0.0015,
+           0.0004, 0.0013, 0.0002, 0.0031, 0.0004, 8.6, 0.006, 0.005),
+  min  = c(1931, 350011, 0, 0, 0.51, 2.23, 0.11, 0.01, 80.4, 58, 0.52,
+           0, 0, 0, 0, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, 0.04, 0, 0),
+  max  = c(5225, 425928, 0.079, 10.3, 12, 104, 36.5, 32.9, 474, 1344, 31.3,
+           0.079, 0.087, 0.012, 0.042, 0.020, NA, NA, 0.0017, 0.0056,
+           0.0012, 0.0057, 0.0007, 0.0148, 0.0017, 45.5, 0.035, 0.036),
+  mtc  = c(6472, 462387, 0.11, 13.9, 15.4, 143, 46, 48, 629, 1700, 40,
+           0.1, 0.12, 0.015, 0.058, 0.030, NA, NA, 0.002, 0.009, 0.002,
+           0.008, 0.001, 0.021, 0.003, 63, 0.05, 0.05)
+)
+
+simulate_element <- function(m, s, lo, hi, n = 10) {
+  if (is.na(m)) return(rep(NA_real_, n)) 
+  sigma2 <- log(1 + s^2 / m^2)
+  mu     <- log(m) - sigma2 / 2
+  out <- numeric(0)
+  while (length(out) < n) {
+    x <- rlnorm(n, mu, sqrt(sigma2))
+    out <- c(out, x[x >= lo & x <= hi])
+  }
+  signif(out[1:n], 3)
+}
+
+enamel <- as.data.frame(
+  mapply(simulate_element, ref$mean, ref$sd, ref$min, ref$max,
+         SIMPLIFY = FALSE),
+  col.names = ref$element
+)
+enamel <- cbind(sample = sprintf("ME%02d", 1:10), enamel)
+```
+
+```{r}
+mtc <- ref$mtc[match(names(enamel)[-1], ref$element)]
+mtc_ratio <- cbind(sample=enamel$sample, sweep(enamel[,-1],2,mtc,"/"))
+```
+
+3. Plotting the Normalized Concentrations
 
 "V", "Mn", "Fe", "La", "Ce", "Nd", "Dy", "Yb", "Th", "U"
 
+```{r}
+ggplot(enamel, aes(x=sample, y=))+
+  geom_point()+
+  geom_line()+
+  scale_y_continuous(trans = log2_trans(),
+    breaks = trans_breaks("log10", function(x) 10^x),
+    labels = trans_format("log10", math_format(10^.x))) +
+  geom_hline(yintercept = 10^0, color="red")
+```
+
+
 ## Dietary analysis
+
 divide certain elements by Ca
 
 "Sr", "Ba"

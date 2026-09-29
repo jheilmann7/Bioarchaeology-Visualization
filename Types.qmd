@@ -1,14 +1,12 @@
 # Types of Visualizations {.unnumbered}
-
-## Distribution {.unnumbered}
-
 ```{r}
 #| include: false
 library(ggplot2)
 data <- data.frame(value=rnorm(100, mean=15, sd=3))
 data$group <- as.factor(sample(1:3, size=100, replace=TRUE))
+data$
 ```
-
+## Distribution {.unnumbered}
 ### Boxplot {.unnumbered}
 
 ```{r}
