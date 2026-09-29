@@ -1,29 +1,4 @@
 # Trace Element Analysis
-
-## Checking for Diagenesis
-1. Maximum Threshold Concentration (MTC)
-```{r}
-#| echo: false
-#| message: false
-
-library(gt)
-library(dplyr)
-Elements <- c("Mg", "Ca", "V", "Cr", "Mn", "Fe", "Ni", "Cu", "Zn", "Sr",
-              "Ba", "La", "Ce", "Pr", "Nd", "Sm", "Tb", "Dy",
-              "Ho", "Er", "Tm", "Yb", "Lu", "Pb", "Th", "U")
-
-MTC <- c(6472, 462387, 0.11, 13.9, 15.4, 143, 46, 48, 629, 1700,
-         40, 0.1, 0.12, 0.015, 0.058, 0.030, 0.002, 0.009,
-         0.002, 0.008, 0.001, 0.021, 0.003, 63, 0.05, 0.05)
-
-trace <- data.frame(Elements, MTC)
-
-trace %>%
-  gt() %>%
-  tab_footnote(footnote=md("Source: Kamenov et al., 2018"))
-```
-
-2.  Normalizing your data (divide by the MTC)
 ```{r}
 #| include: false
 
@@ -68,31 +43,64 @@ enamel <- as.data.frame(
 )
 enamel <- cbind(sample = sprintf("ME%02d", 1:10), enamel)
 ```
-
+## Checking for Diagenesis
+### Maximum Threshold Concentration (MTC)
 ```{r}
-mtc <- ref$mtc[match(names(enamel)[-1], ref$element)]
-mtc_ratio <- cbind(sample=enamel$sample, sweep(enamel[,-1],2,mtc,"/"))
+#| echo: false
+#| message: false
+
+library(gt)
+library(dplyr)
+Elements <- c("Mg", "Ca", "V", "Cr", "Mn", "Fe", "Ni", "Cu", "Zn", "Sr",
+              "Ba", "La", "Ce", "Pr", "Nd", "Sm", "Eu","Gd" , "Tb", "Dy",
+              "Ho", "Er", "Tm", "Yb", "Lu", "Pb", "Th", "U")
+
+MTC <- c(6472, 462387, 0.11, 13.9, 15.4, 143, 46, 48, 629, 1700,
+         40, 0.1, 0.12, 0.015, 0.058, 0.030, NA, NA, 0.002, 0.009,
+         0.002, 0.008, 0.001, 0.021, 0.003, 63, 0.05, 0.05)
+
+trace <- data.frame(Elements, MTC)
+
+trace %>%
+  gt() %>%
+  tab_footnote(footnote=md("Source: Kamenov et al., 2018"))
 ```
 
-3. Plotting the Normalized Concentrations
-
-"V", "Mn", "Fe", "La", "Ce", "Nd", "Dy", "Yb", "Th", "U"
-
+### Normalizing your data (divide by the MTC)
+1. Transform data into a wide format(rows = samples | columns = elements)
+2. Normalize each column by dividing by the MTC
 ```{r}
-ggplot(enamel, aes(x=sample, y=))+
-  geom_point()+
-  geom_line()+
-  scale_y_continuous(trans = log2_trans(),
-    breaks = trans_breaks("log10", function(x) 10^x),
-    labels = trans_format("log10", math_format(10^.x))) +
-  geom_hline(yintercept = 10^0, color="red")
+
+mtc <- trace$MTC[match(enamel)[-1], trace$Elements] # ensures the elements are in the same order
+# if you have additional variables, exclude those as well in place of [-1] which removes the first column of sample names
+
+mtc.ratio <- cbind(sample=enamel$sample, sweep(enamel[,-1], 2, mtc, "/")) # divides the sample values by the matched MTC values
+# sweep(x, Margin, Stats, Fun)
+```
+3. Create a subset of Ratios
+```{r}
+library(tidyverse)
+
+elements <- c("V", "Mn", "Fe", "La", "Ce", "Nd", "Dy", "Yb", "Th", "U")
+
+mtc.long <- mtc.ratio %>%
+  select(sample, all_of(elements)) %>% # pulls the sample numbers and the values for the subset of elements
+  pivot_longer(-sample, names_to = "element", values_to = "ratio") # transforms the table into a stacked format
+```
+4. Plotting the Normalized Concentrations
+```{r}
+library(ggplot2)
+
+ggplot(mtc.long, aes(x=sample, y=ratio, group=element))+
+  geom_point(aes(color=element))+
+  geom_line(aes(color=element))+
+  scale_y_log10() +
+  geom_hline(yintercept = 10^0, color="red")+
+  labs(x="Samples", y="C/MTC")
 ```
 
-
-
-2. logarithmic scale for y-axis (so all elements can be viewed at the same time)
-
-"V", "Mn", "Fe", "La", "Ce", "Nd", "Dy", "Yb", "Th", "U"
+5. Interpret the Data
+Dividing the sample concentrations by the maximum threshold concentrations obtained from modern individuals acts as a diagenesis check. If any value exceeds the 10^0 line, there is potential diagenic alteration to the sample. 
 
 
 
