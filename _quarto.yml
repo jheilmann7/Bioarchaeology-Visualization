@@ -7,11 +7,7 @@ book:
   date: "9/26/2026"
   chapters:
     - index.qmd
-    - part: intro_visual.qmd
-      chapters:
-        - Types.qmd
-        - Packages.qmd
-        - Customization.qmd
+    - intro_visual.qmd
     - part: sisotopes.qmd
       chapters:
         - isodata.qmd

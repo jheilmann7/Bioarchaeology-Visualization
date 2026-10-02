@@ -1,2 +1,7 @@
 # Stable Isotope Analysis
 
+## Trace Element Analysis {.unnumbered}
+
+## Heavy Isotopic Analysis {.unnumbered}
+
+## Light Isotopic Analysis {.unnumbered}

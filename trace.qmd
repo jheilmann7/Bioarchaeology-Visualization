@@ -45,9 +45,9 @@ enamel <- as.data.frame(
 enamel <- cbind(sample = sprintf("ME%02d", 1:10), enamel)
 ```
 
-## Checking for Diagenesis
+## Checking for Diagenesis  {.unnumbered}
 
-### Maximum Threshold Concentration (MTC)
+### Maximum Threshold Concentration (MTC) {.unnumbered}
 
 Source: Kamenov et al., 2018
 
@@ -68,7 +68,7 @@ MTC <- c(6472, 462387, 0.11, 13.9, 15.4, 143, 46, 48, 629, 1700,
 trace <- data.frame(Elements, MTC)
 ```
 
-### Normalizing your data (divide by the MTC)
+### Normalizing your data (divide by the MTC) {.unnumbered}
 
 1.  Transform data into a wide format
 
@@ -76,7 +76,7 @@ trace <- data.frame(Elements, MTC)
 # Depending on the format of your data, transform the dataframe so that the rows represent the samples/individuals and the columns represent the trace elements.
 ```
 
-2.  Normalize each column by dividing by the MTC
+2.  Normalize each column by dividing by the MTC 
 
 ```{r}
 mtc <- trace$MTC[match(names(enamel)[-1], trace$Elements)] # ensures the elements are in the same order
@@ -122,9 +122,9 @@ ggplot(mtc.long, aes(x=sample, y=ratio, group=element))+
 # Dividing the sample concentrations by the maximum threshold concentrations obtained from modern individuals acts as a diagenesis check. If any value exceeds the 10^0 line, there is potential diagenic alteration to the sample.
 ```
 
-## Dietary analysis
+## Dietary analysis {.unnumbered}
 
-### Biopurification of Calcium
+### Biopurification of Calcium {.unnumbered}
 
 
 Ba/Ca vs. Sr/Ca
