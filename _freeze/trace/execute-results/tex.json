@@ -1,0 +1,21 @@
+{
+  "hash": "e9cbfb7128a8ce1b5742bd67e489b595",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Trace Element Analysis\n\n## Checking for Diagenesis\n### Maximum Threshold Concentration (MTC)\nSource: Kamenov et al., 2018\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(gt)\nlibrary(dplyr)\n\nElements <- c(\"Mg\", \"Ca\", \"V\", \"Cr\", \"Mn\", \"Fe\", \"Ni\", \"Cu\", \"Zn\", \"Sr\",\n              \"Ba\", \"La\", \"Ce\", \"Pr\", \"Nd\", \"Sm\", \"Eu\",\"Gd\" , \"Tb\", \"Dy\",\n              \"Ho\", \"Er\", \"Tm\", \"Yb\", \"Lu\", \"Pb\", \"Th\", \"U\")\n\nMTC <- c(6472, 462387, 0.11, 13.9, 15.4, 143, 46, 48, 629, 1700,\n         40, 0.1, 0.12, 0.015, 0.058, 0.030, NA, NA, 0.002, 0.009,\n         0.002, 0.008, 0.001, 0.021, 0.003, 63, 0.05, 0.05)\n\ntrace <- data.frame(Elements, MTC)\n```\n:::\n\n\n### Normalizing your data (divide by the MTC)\n1. Transform data into a wide format\n\n::: {.cell}\n\n```{.r .cell-code}\n# Depending on the format of your data, transform the dataframe so that the rows represent the samples/individuals and the columns represent the trace elements.\n```\n:::\n\n2. Normalize each column by dividing by the MTC\n\n::: {.cell}\n\n```{.r .cell-code}\nmtc <- trace$MTC[match(names(enamel)[-1], trace$Elements)] # ensures the elements are in the same order\nmtc <- trace$MTC[match(names(enamel)[-1], trace$Elements)] \n# ensures the elements are in the same order\n# if you have additional variables, exclude those as well in place of [-1] which removes the first column of sample names\n\nmtc.ratio <- cbind(sample=enamel$sample, sweep(enamel[,-1], 2, mtc, \"/\")) \n# divides the sample values by the matched MTC values\n# sweep(x, Margin, Stats, Fun)\n```\n:::\n\n3. Create a subset of Ratios\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyr)\n\nelements <- c(\"V\", \"Mn\", \"Fe\", \"La\", \"Ce\", \"Nd\", \"Dy\", \"Yb\", \"Th\", \"U\")\n\nmtc.long <- mtc.ratio %>%\n  select(sample, all_of(elements)) %>% \n  # pulls the sample numbers and the values for the subset of elements\n  pivot_longer(-sample, names_to = \"element\", values_to = \"ratio\") \n  # transforms the table into a stacked format\n```\n:::\n\n4. Plotting the Normalized Concentrations\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(ggplot2)\n\nggplot(mtc.long, aes(x=sample, y=ratio, group=element))+\n  geom_point(aes(color=element))+\n  geom_line(aes(color=element))+\n  scale_y_log10() +\n  geom_hline(yintercept = 10^0, color=\"red\")+\n  labs(x=\"Samples\", y=\"C/MTC\")\n```\n\n::: {.cell-output-display}\n![](trace_files/figure-pdf/unnamed-chunk-6-1.pdf){fig-pos='H'}\n:::\n:::\n\n5. Interpret the Data\n\n::: {.cell}\n\n```{.r .cell-code}\n# Dividing the sample concentrations by the maximum threshold concentrations obtained from modern individuals acts as a diagenesis check. If any value exceeds the 10^0 line, there is potential diagenic alteration to the sample.\n```\n:::\n\n\n\n## Dietary analysis\nBa/Ca vs. Sr/Ca\n\n::: {.cell}\n\n```{.r .cell-code}\n# Trophic Level and Salinity\n```\n:::\n\n\nd13C vs. Ba/Sr\n\n::: {.cell}\n\n```{.r .cell-code}\n# \n```\n:::\n\n\nZn/Ca\n\n::: {.cell}\n\n```{.r .cell-code}\n# Proportion of shellfish in diet\n```\n:::\n\n\n",
+    "supporting": [
+      "trace_files/figure-pdf"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {
+      "knitr": [
+        "{\"type\":\"list\",\"attributes\":{},\"value\":[]}"
+      ]
+    },
+    "preserve": null,
+    "postProcess": false
+  }
+}

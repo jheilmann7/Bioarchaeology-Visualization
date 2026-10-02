@@ -70,12 +70,9 @@ trace <- data.frame(Elements, MTC)
 ```
 2. Normalize each column by dividing by the MTC
 ```{r}
-<<<<<<< HEAD
 mtc <- trace$MTC[match(names(enamel)[-1], trace$Elements)] # ensures the elements are in the same order
-=======
 mtc <- trace$MTC[match(names(enamel)[-1], trace$Elements)] 
 # ensures the elements are in the same order
->>>>>>> 6ecd66b (hhhhhh)
 # if you have additional variables, exclude those as well in place of [-1] which removes the first column of sample names
 
 mtc.ratio <- cbind(sample=enamel$sample, sweep(enamel[,-1], 2, mtc, "/")) 
