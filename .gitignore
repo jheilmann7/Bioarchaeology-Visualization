@@ -10,3 +10,4 @@ _book/
 .httr-oauth
 .DS_Store
 .quarto
+index.tex
