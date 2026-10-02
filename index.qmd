@@ -16,4 +16,4 @@ The book is divided into two main parts:
 1.  **Locate and access** open databases and R packages relevant to isotopic analysis, geometric morphometrics, and spatial data in bioarchaeology.
 2.  **Select** appropriate visualization types based on the data structure and the research question being asked.
 3.  **Interpret** each type of visualization, recognizing what the plot shows, what it does not show, and common pitfalls in reading it.
-4.  **Adapt** the annotated code examples to their own datasets and research projects.
+4.  **Adapt** the annotated code examples to individual datasets and research projects.
