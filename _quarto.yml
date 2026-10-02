@@ -7,16 +7,6 @@ book:
   date: "9/26/2026"
   chapters:
     - index.qmd
-    - part: r_basics.qmd
-      chapters: 
-        - summary_statistics.qmd
-        - dataframes.qmd
-        - custom_functions.qmd
-    - part: analysis.qmd
-      chapters: 
-        - hypothesis.qmd
-        - ANOVA.qmd
-        - Regression.qmd
     - part: intro_visual.qmd
       chapters:
         - Types.qmd
