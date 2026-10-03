@@ -2,6 +2,12 @@
 
 ## Books {.unnumbered}
 
+{#fig-views layout-ncol=3} ![R for Data Science](images/cover_rdata.jpg){#fig-datasci}
+
+![R Cookbook](images/book_cover.jpg){#fig-cook}
+
+![R Graphics Cookbook](images/cover.jpg){#fig-graphcook}
+
 [**R for Data Science**](https://r4ds.hadley.nz/): a practicum of skills for data science
 
 [**R Cookbook**](https://rc2e.com/): how-to recipes on how to solve specific problems in R
