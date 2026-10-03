@@ -3,12 +3,12 @@
 ## Books {.unnumbered}
 
 
-:::{#fig-views layout-ncol=3} 
-[![](images/cover_rdata.jpg)](https://r4ds.hadley.nz/){#fig-datasci}
+::: {layout-ncol=3}
+[![](images/cover_rdata.jpg)](https://r4ds.hadley.nz/)
 
-[![](images/book_cover.jpg)](https://rc2e.com/){#fig-cook}
+[![](images/book_cover.jpg)](https://rc2e.com/)
 
-[![](images/cover.jpg)](https://r-graphics.org/){#fig-graphcook}
+[![](images/cover.jpg)](https://r-graphics.org/)
 :::
 
 
