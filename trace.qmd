@@ -45,7 +45,7 @@ enamel <- as.data.frame(
 enamel <- cbind(sample = sprintf("ME%02d", 1:10), enamel)
 ```
 
-## Checking for Diagenesis  {.unnumbered}
+## Checking for Diagenesis {.unnumbered}
 
 ### Maximum Threshold Concentration (MTC) {.unnumbered}
 
@@ -72,11 +72,9 @@ trace <- data.frame(Elements, MTC)
 
 1.  Transform data into a wide format
 
-```{r}
-# Depending on the format of your data, transform the dataframe so that the rows represent the samples/individuals and the columns represent the trace elements.
-```
+    Depending on the format of your data, transform the dataframe so that the rows represent the samples/individuals and the columns represent the trace elements.
 
-2.  Normalize each column by dividing by the MTC 
+2.  Normalize each column by dividing by the MTC
 
 ```{r}
 mtc <- trace$MTC[match(names(enamel)[-1], trace$Elements)] # ensures the elements are in the same order
@@ -118,23 +116,18 @@ ggplot(mtc.long, aes(x=sample, y=ratio, group=element))+
 
 5.  Interpret the Data
 
-```{r}
-# Dividing the sample concentrations by the maximum threshold concentrations obtained from modern individuals acts as a diagenesis check. If any value exceeds the 10^0 line, there is potential diagenic alteration to the sample.
-```
+Dividing the sample concentrations by the maximum threshold concentrations obtained from modern individuals acts as a diagenesis check. If any value exceeds the 10\^0 line, there is potential diagenic alteration to the sample.
 
 ## Dietary analysis {.unnumbered}
 
 ### Biopurification of Calcium {.unnumbered}
 
-
 Ba/Ca vs. Sr/Ca
 
-```{r}
-# biopurification = preferentially assimilating essential calcium to non-essential strontium or barium in bones and teeth * Burton et al. 1999
-# Mammals only absorb 20-30% of dietary strontium * Losch et al. 2014
-# Barium is not soluble in water, sp Ba/Ca ratio is lower in marine foods * Pankowska et al. 2016 
-# Sr/Ca and Ba/Ca ratios decrease in terrestrial trophic chains *Balter 2004 
-```
+- Biopurification = preferentially assimilating essential calcium to non-essential strontium or barium in bones and teeth \* Burton et al. 1999
+- Mammals only absorb 20-30% of dietary strontium \* Losch et al. 2014
+- Barium is not soluble in water, sp Ba/Ca ratio is lower in marine foods \* Pankowska et al. 2016
+- Sr/Ca and Ba/Ca ratios decrease in terrestrial trophic chains \*Balter 2004
 
 d13C vs. Ba/Sr
 
