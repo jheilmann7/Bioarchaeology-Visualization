@@ -72,7 +72,7 @@ trace <- data.frame(Elements, MTC)
 
 1.  Transform data into a wide format
 
-    Depending on the format of your data, transform the dataframe so that the rows represent the samples/individuals and the columns represent the trace elements.
+Depending on the format of your data, transform the dataframe so that the rows represent the samples/individuals and the columns represent the trace elements.
 
 2.  Normalize each column by dividing by the MTC
 

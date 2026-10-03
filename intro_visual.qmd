@@ -2,7 +2,6 @@
 
 ## Books {.unnumbered}
 
-
 ::: {layout-ncol=3}
 [![](images/cover_rdata.jpg)](https://r4ds.hadley.nz/)
 
@@ -10,6 +9,7 @@
 
 [![](images/cover.jpg)](https://r-graphics.org/)
 :::
+
 
 
 ## Resources {.unnumbered}
