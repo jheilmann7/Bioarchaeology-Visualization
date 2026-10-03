@@ -1,4 +1,4 @@
-# Overview 
+# Overview
 
 ## Purpose {.unnumbered}
 
@@ -6,10 +6,10 @@ This book is an open-access resource for students and professionals who want to 
 
 ## Sections {.unnumbered}
 
-The book is divided into two main parts:
+Each chapter is divided into two main parts
 
-1.  Introduction to R Visualizations
-2.  Discipline-Specific Visualizations
+1.  A resources page with links to databases and concept-specific packages
+2.  Workflows with interpretation guidelines for a variety of research questions
 
 ## Goals {.unnumbered}
 
